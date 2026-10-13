@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>همیار دانشجویی | دانشگاه قم</title>
+
+<style>
+@font-face {
+  font-family: "BNazanin";
+  src: url("../../front/B-NAZANIN.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BTitr";
+  src: local("B Titr"), local("B Titr Bold");
+}
+
+:root {
+  --bg: #071012;
+  --gold: #e6bd58;
+  --muted: #a2b2ae;
+  --white: #f4f6f3;
+  --line: #293638;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse at 50% -10%, #173338 0, transparent 45%),
+    var(--bg);
+  color: var(--white);
+  font-family: "BNazanin";
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: auto;
+  padding: 28px 22px 60px;
+}
+
+.topline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--gold);
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.topline::before {
+  content: "";
+  width: 55px;
+  height: 3px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+header {
+  padding: 18px 0 28px;
+}
+
+.org {
+  color: #c3d2ce;
+  font-size: 20px;
+  line-height: 1.8;
+  margin-top: 15px;
+}
+
+h1 {
+  font-family: "BNazanin";
+  font-size: clamp(34px, 4vw, 46px);
+  line-height: 1.45;
+  margin: 10px 0 4px;
+}
+
+.lead {
+  color: var(--muted);
+  font-size: clamp(19px, 2.5vw, 25px);
+  line-height: 1.9;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.card {
+  border: 1px solid #334143;
+  border-radius: 26px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #142326, #0a1113);
+  box-shadow: 0 16px 38px #0005;
+  min-width: 0;
+  transition: transform .2s, border-color .2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: #8c793f;
+}
+
+.hero {
+  height: clamp(220px, 31vw, 350px);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #304a50, #0b171b 70%);
+  isolation: isolate;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: .82;
+  transition: transform .35s;
+}
+
+.card:hover .hero img {
+  transform: scale(1.035);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #06101212 10%, #061012dc 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.num {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  bottom: 91px;
+  color: var(--gold);
+  font: 700 13px Arial, sans-serif;
+  direction: ltr;
+}
+
+.hero h2 {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  left: 20px;
+  bottom: 38px;
+  margin: 0;
+  font-family: "BNazanin";
+  font-size: clamp(25px, 3.2vw, 35px);
+  line-height: 1.5;
+}
+
+.open {
+  position: absolute;
+  z-index: 3;
+  left: 18px;
+  bottom: 17px;
+  background: var(--gold);
+  color: #111a1b;
+  border: 0;
+  border-radius: 30px;
+  padding: 9px 15px;
+  font: 700 16px "BNazanin", Tahoma, sans-serif;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+
+.open:hover {
+  background: #f0d17e;
+}
+
+.open:active {
+  transform: scale(.97);
+}
+
+.summary {
+  padding: 15px 20px 18px;
+  font-size: 19px;
+  color: #c3cfcb;
+  line-height: 1.8;
+  min-height: 83px;
+}
+
+.details {
+  display: none;
+  border-top: 1px solid var(--line);
+  padding: 16px 20px 20px;
+  color: #dce4e0;
+  font-size: 19px;
+  line-height: 2;
+}
+
+.card.expanded .details {
+  display: block;
+}
+
+.details p {
+  margin: 0;
+}
+
+.details strong {
+  color: var(--gold);
+}
+
+.bottom {
+  margin-top: 28px;
+  padding: 23px;
+  border: 1px solid #53604b;
+  border-radius: 20px;
+  background: linear-gradient(115deg, #132e30, #101719);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.bottom h3 {
+  margin: 0 0 5px;
+  font: 700 25px "BTitr", "BNazanin", Tahoma, sans-serif;
+  color: var(--gold);
+  line-height: 1.7;
+}
+
+.bottom p {
+  margin: 0;
+  color: #d0d9d5;
+  font-size: 19px;
+  line-height: 1.9;
+}
+
+.buten {
+  width: 35%;
+  padding: 15px;
+  background-color: var(--gold);
+  border: none;
+  border-radius: 20px;
+  color: var(--bg);
+  font-family: "BNazanin";
+  cursor: pointer;
+  text-align: center;
+  transition: background .2s, transform .2s;
+  flex-shrink: 0;
+}
+
+.buten:hover {
+  background-color: #f0d17e;
+  transform: translateY(-2px);
+}
+
+.buten:active {
+  transform: scale(.98);
+}
+
+.buten strong {
+  font-size: x-large;
+  line-height: 1.7;
+}
+
+footer {
+  text-align: center;
+  color: #82938e;
+  font-size: 16px;
+  line-height: 1.9;
+  margin-top: 18px;
+}
+
+@media (max-width: 750px) {
+  .buten {
+    width: 60%;
+  }
+
+  .buten strong {
+    font-size: medium;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 650px) {
+  .wrap {
+    padding: 19px 13px 35px;
+  }
+
+  .grid {
+    gap: 13px;
+  }
+
+  .card {
+    border-radius: 19px;
+  }
+
+  .hero {
+    height: 245px;
+  }
+
+  .hero h2 {
+    right: 12px;
+    left: 12px;
+    font-size: 22px;
+    bottom: 40px;
+  }
+
+  .num {
+    right: 12px;
+    bottom: 89px;
+    font-size: 11px;
+  }
+
+  .open {
+    left: 10px;
+    bottom: 10px;
+    padding: 7px 11px;
+    font-size: 14px;
+  }
+
+  .summary {
+    padding: 12px;
+    font-size: 17px;
+    min-height: 100px;
+  }
+
+  .details {
+    padding: 13px;
+    font-size: 17px;
+  }
+
+  .org {
+    font-size: 17px;
+  }
+
+  .bottom {
+    padding: 15px;
+    gap: 14px;
+  }
+
+  .bottom h3 {
+    font-size: 21px;
+  }
+
+  .bottom p {
+    font-size: 17px;
+  }
+
+  .buten {
+    width: 75%;
+  }
+
+  .buten strong {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    height: 275px;
+  }
+
+  .summary {
+    min-height: unset;
+  }
+
+  .buten {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .topline {
+    font-size: 22px;
+  }
+
+  .org {
+    font-size: 16px;
+  }
+
+  .bottom h3 {
+    font-size: 20px;
+  }
+
+  .buten strong {
+    font-size: 17px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="topline">فرصت همکاری دانشجویی</div>
+
+    <p class="org">
+      مرکز رسانه و فضای مجازی<br>
+      نهاد نمایندگی مقام معظم رهبری در دانشگاه قم
+    </p>
+
+    <h1>همیار دانشجو</h1>
+
+    <p class="lead">
+       می‌پذیرد؛<br>
+      با کمک هم روایت‌گر اتفاق‌های خوب دانشگاه قم خواهیم بود
+    </p>
+  </header>
+
+  <main class="grid">
+
+    <!-- حوزه اول: خبرنگاری -->
+    <article class="card">
+
+      <div class="hero">
+        <img
+          alt="خبرنگاری و تهیه گزارش"
+          src="https://zolalandisheqom.github.io/university/photo/khabar.jpg"
+          loading="lazy"
+        >
+
+        <div class="num">MEDIA / 01</div>
+
+        <h2>خبرنگاری</h2>
+
+        <button
+          class="open"
+          type="button"
+          aria-expanded="false"
+        >
+          توضیحات بیشتر ←
+        </button>
+      </div>
+
+      <div class="summary">
+        خبرهای خوب دانشگاه را روایت کن و صدای برنامه‌های فرهنگی باش!
+      </div>
+
+      <div class="details">
+        <p>
+          <strong>در این حوزه:</strong><br>
+
+          برنامه‌های فرهنگی و فعالیت‌های نهاد رهبری همیشه حرفی برای گفتن دارند.
+          ما به دانشجویانی نیاز داریم که این اتفاق‌ها را به‌موقع و جذاب روایت کنند
+          و خبرهایشان را به گوش دیگران برسانند.
+
+          <br><br>
+
+          اگر در زمینه خبرنویسی و خبرنگاری مهارت داری، همین حالا ثبت‌نام کن و به تیم رسانه ما بپیوند!
+        </p>
+      </div>
+
+    </article>
+
+    <!-- حوزه دوم: تصویربرداری -->
+    <article class="card">
+
+      <div class="hero">
+        <img
+          alt="عکاسی و تصویربرداری"
+          src="https://zolalandisheqom.github.io/university/photo/ak.jpg"
+          loading="lazy"
+        >
+
+        <div class="num">MEDIA / 02</div>
+
+        <h2>تصویربرداری</h2>
+
+        <button
+          class="open"
+          type="button"
+          aria-expanded="false"
+        >
+          توضیحات بیشتر ←
+        </button>
+      </div>
+
+      <div class="summary">
+        لحظه‌های ماندگار دانشگاه را با نگاهت ثبت کن!
+      </div>
+
+      <div class="details">
+        <p>
+          <strong>در این حوزه:</strong><br>
+
+          هر برنامه، لحظه‌هایی دارد که ارزش ثبت شدن دارند.
+          ما به دانشجویانی علاقه‌مند و خلاق نیاز داریم
+          تا با عکاسی و فیلم‌برداری، حال‌وهوای برنامه‌ها را به تصویر بکشند.
+
+          <br><br>
+
+          اگر در زمینه عکس برداری فیلم‌برداری، مهارت داری، همین حالا ثبت‌نام کن و به تیم رسانه ما بپیوند!
+        </p>
+      </div>
+
+    </article>
+
+    <!-- حوزه سوم: طراحی پوستر -->
+    <article class="card">
+
+      <div class="hero">
+        <img
+          alt="طراحی پوستر و کارهای گرافیکی"
+          src="https://zolalandisheqom.github.io/university/photo/ph.jpg"
+          loading="lazy"
+        >
+
+        <div class="num">MEDIA / 03</div>
+
+        <h2>طراحی پوستر</h2>
+
+        <button
+          class="open"
+          type="button"
+          aria-expanded="false"
+        >
+          توضیحات بیشتر ←
+        </button>
+      </div>
+
+      <div class="summary">
+        ایده‌هایت را به طرح‌هایی جذاب و چشم‌نواز تبدیل کن!
+      </div>
+
+      <div class="details">
+        <p>
+          <strong>در این حوزه:</strong><br>
+
+          برای معرفی برنامه‌های فرهنگی، به پوسترها و بنرهایی نیاز داریم
+          که در همان نگاه اول توجه مخاطب را جلب کنند.
+          اگر به طراحی گرافیک علاقه داری و دوست داری ایده‌هایت
+          در فضای دانشگاه دیده شوند، می‌توانی در این مسیر همراه ما باشی.
+
+          <br><br>
+
+          اگر در زمینه طراحی پوستر و بنر مهارت داری، همین حالا ثبت‌نام کن و به تیم رسانه ما بپیوند!
+        </p>
+      </div>
+
+    </article>
+
+    <!-- حوزه چهارم: تدوین -->
+    <article class="card">
+
+      <div class="hero">
+        <img
+          alt="تدوین ویدئو و تولید محتوای تصویری"
+          src="https://zolalandisheqom.github.io/university/photo/td.jpg"
+          loading="lazy"
+        >
+
+        <div class="num">MEDIA / 04</div>
+
+        <h2>تدوین</h2>
+
+        <button
+          class="open"
+          type="button"
+          aria-expanded="false"
+        >
+          توضیحات بیشتر ←
+        </button>
+      </div>
+
+      <div class="summary">
+        از تصاویر خام، روایت‌هایی دیدنی و ماندگار بساز!
+      </div>
+
+      <div class="details">
+        <p>
+          <strong>در این حوزه:</strong><br>
+
+          پشت هر گزارش تصویری جذاب، یک تدوین خوب قرار دارد.
+          ما به دانشجویانی نیاز داریم که بتوانند عکس‌ها و فیلم‌های خام
+          را به گزارش‌های تصویری، کلیپ‌ها، مصاحبه‌ها و مستندهای دیدنی تبدیل کنند.
+
+          <br><br>
+
+          اگر در زمینه تدوین ویدئو مهارت داری، ثبت‌نام کن و به تیم رسانه ما بپیوند!
+        </p>
+      </div>
+
+    </article>
+
+    <!-- حوزه پنجم: مجری‌گری -->
+    <article class="card">
+
+      <div class="hero">
+        <img
+          alt="مجری‌گری و گویندگی"
+          src="https://zolalandisheqom.github.io/university/photo/mo.jpg"
+          loading="lazy"
+        >
+
+        <div class="num">MEDIA / 05</div>
+
+        <h2>مجری‌گری و گویندگی</h2>
+
+        <button
+          class="open"
+          type="button"
+          aria-expanded="false"
+        >
+          توضیحات بیشتر ←
+        </button>
+      </div>
+
+      <div class="summary">
+        با صدایت ارتباط بساز و به برنامه‌ها شور و انرژی بده!
+      </div>
+
+      <div class="details">
+        <p>
+          <strong>در این حوزه:</strong><br>
+
+          اجرای خوب می‌تواند یک برنامه را به تجربه‌ای ماندگار تبدیل کند.
+          اگر بیان خوبی داری، از صحبت کردن در جمع لذت می‌بری
+          یا به گویندگی و اجرای برنامه علاقه‌مندی،
+          فرصت داری توانایی‌هایت را در فضای دانشگاه به کار بگیری.
+
+          <br><br>
+
+          اگر در زمینه اجرا و برگزاری مراسمات مهارت داری، ثبت‌نام کن و به تیم رسانه ما بپیوند!
+        </p>
+      </div>
+
+    </article>
+
+  </main>
+
+  <!-- دعوت به همکاری -->
+  <section class="bottom">
+
+    <div>
+      <h3>جای شما در تیم رسانه ما خالی است!</h3>
+
+      <p>
+        به کدام از حوزه‌های رسانه‌ علاقه داری؟<br>
+
+        حوزه موردعلاقه‌ات را انتخاب و از طریق صفحه ایتای ما
+        جهت همکاری اعلام آمادگی کن تا برای گفت‌وگو و آشنایی بیشتر
+        با شما هماهنگ کنیم.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      class="buten"
+      onclick="window.location.href='https://eitaa.com/resaneh_nahad'"
+    >
+      <strong>برای همکاری کلیک کن</strong>
+    </button>
+
+  </section>
+
+  <footer>
+    مرکز رسانه و فضای مجازی | نهاد نمایندگی مقام معظم رهبری در دانشگاه قم
+  </footer>
+
+</div>
+
+<script>
+document.querySelectorAll(".card").forEach(card => {
+  const btn = card.querySelector(".open");
+
+  btn.addEventListener("click", () => {
+    const expanded = card.classList.toggle("expanded");
+
+    btn.setAttribute("aria-expanded", String(expanded));
+
+    btn.textContent = expanded
+      ? "بستن توضیحات ↑"
+      : "توضیحات بیشتر ←";
+  });
+});
+</script>
+
+</body>
+</html>

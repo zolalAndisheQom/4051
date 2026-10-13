@@ -24,6 +24,8 @@ const cofing=[
 
 const audio_safari = [
     "audio/ch1.mp3",
+    "audio/ch2.mp3",
+    
 ]
 const Link_safari =[
     
@@ -33,7 +35,9 @@ const Link_tahri = [
 
 ]
 const audio_tahri = [
-    "audio/ak.mp3",
+    "audio/az1.mp3",
+    "audio/az2.mp3",
+    "audio/az3.mp3",
 ] 
 const teachers= {
     Safari : {"استاد" : "حجت‌الاسلام والمسلمین دکتر درستکار", "ترم" : "4052", "فایل‌های آپلود شده" : tofarsi(audio_safari.length+Link_safari.length,"فایل")},
