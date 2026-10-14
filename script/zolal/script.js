@@ -31,7 +31,7 @@ function loadFile(id) {
     const loader = document.getElementById(id)
     loader.innerHTML = ""
     document.getElementById("load").style = "display: none"
-    let i =2
+    let i =1
     for (let index = 0; index < src.length; index++) {
         
         const div = document.createElement("div")
