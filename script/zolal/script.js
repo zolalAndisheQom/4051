@@ -31,13 +31,13 @@ function loadFile(id) {
     const loader = document.getElementById(id)
     loader.innerHTML = ""
     document.getElementById("load").style = "display: none"
-    let i =2
+    let i =1
     for (let index = 0; index < src.length; index++) {
         
         const div = document.createElement("div")
             div.className = "audioDiv"
         const h_4 = document.createElement("h4")
-            h_4.innerText = "جلسه"+ i
+            h_4.innerText = tofarsi(i,"جلسه",true)
             div.appendChild(h_4)
         const audi = document.createElement("audio")
             audi.src = src[index]
