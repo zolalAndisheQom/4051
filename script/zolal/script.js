@@ -30,6 +30,7 @@ informatino(teachers)
 function loadFile(id) {
     const loader = document.getElementById(id)
     loader.innerHTML = ""
+    document.getElementById("sours").style = ""
     document.getElementById("load").style = "display: none"
     let i =1
     for (let index = 0; index < src.length; index++) {
@@ -70,6 +71,7 @@ document.getElementById("Garyan").addEventListener("click",()=>{
     document.getElementById("Garyan").classList.add("active")
     document.getElementById("load").style = ""
     document.getElementById("sours").innerHTML =""
+    document.getElementById("sours").style= "display: none"
     default_teacher = "Taheri"
     src = audio_tahri
     herf = Link_tahri
@@ -83,6 +85,7 @@ document.getElementById("Andishe").addEventListener("click",()=>{
     document.getElementById("Garyan").classList.remove("active")
     document.getElementById("load").style = ""
     document.getElementById("sours").innerHTML =""
+    document.getElementById("sours").style= "display: none"
     default_teacher = "Safari"
     informatino(teachers)
     src= audio_safari
