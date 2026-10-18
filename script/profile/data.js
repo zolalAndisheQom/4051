@@ -25,6 +25,7 @@ const cofing=[
 const audio_safari = [
     "audio/ch1.mp3",
     "audio/ch2.mp3",
+    "audio/ch3.mp3",
     
 ]
 const Link_safari =[
